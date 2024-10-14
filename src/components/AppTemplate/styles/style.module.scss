@@ -5,4 +5,24 @@
   border-radius: 20px;
   background: #F9F7F7;
   padding: 20px 55px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.appTemplateTop {
+  background: inherit;
+}
+
+.appTemplateMessages {
+  background: inherit;
+}
+
+.appTemplateMessageLost,
+.appTemplateMessageLength {
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
 }

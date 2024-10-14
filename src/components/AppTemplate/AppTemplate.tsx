@@ -13,17 +13,28 @@ export const AppTemplate: React.FC = (): JSX.Element => {
   return (
     <>
       <article className={styles.appTemplate}>
-        <AppTitle />
-        <InputWindow/>
-        {
-          tasks.map(task => {
-            return(
-              <li key={task.id} className={styles.number}>
-                {task.title}
-              </li>
-            )
-          })
-        }
+        <div className={styles.appTemplateTop}>
+          <AppTitle />
+          <InputWindow onAdd={(title: string) => title && title !== "" ? createTask(title) : null} />
+          {
+            tasks.map(task => {
+              return (
+                <ul>
+                  <li key={task.id}>{task.title}</li>
+                </ul>
+
+              )
+            })
+          }
+        </div>
+        <div className={styles.appTemplateMessages}>
+          {
+            tasks.length === 0 && <p className={styles.appTemplateMessageLost}>У Вас нет активных задач! Пора что-то запланировать</p>
+          }
+          {
+            tasks.length > 0 && <p className={styles.appTemplateMessageLength}>Текущих задач: {tasks.length}</p>
+          }
+        </div>
       </article>
     </>
   )

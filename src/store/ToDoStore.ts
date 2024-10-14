@@ -3,13 +3,7 @@ import { generateId } from "../services/idGenerator/idGenerator";
 import IToDoStore from "./types/IToDoStore";
 
 export const ToDoStore = create<IToDoStore>((set, get) => ({
-  tasks: [
-    {
-      id: generateId(),
-      title: "Дефолтная задача",
-      timeAt: Date.now(),
-    }
-  ],
+  tasks: [],
 
   createTask: (title: string) => {
     const { tasks } = get()
