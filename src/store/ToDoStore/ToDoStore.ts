@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { generateId } from "../services/idGenerator/idGenerator";
+import { generateId } from "../../services/idGenerator/idGenerator";
 import IToDoStore from "./types/IToDoStore";
 
 export const ToDoStore = create<IToDoStore>((set, get) => ({
@@ -9,8 +9,8 @@ export const ToDoStore = create<IToDoStore>((set, get) => ({
     const { tasks } = get()
     const newTask = { id: generateId(), title: title, timeAt: Date.now() }
     set({
-      // tasks: [newTask].concat(tasks)
-      tasks: [...tasks, newTask]
+      // tasks: [newTask].concat(tasks) // Добавление задачи в начало списка
+      tasks: [...tasks, newTask] // Добвление задачи в конец списка
     })
   },
 

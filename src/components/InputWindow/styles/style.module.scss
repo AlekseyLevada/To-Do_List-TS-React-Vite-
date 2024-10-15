@@ -51,4 +51,8 @@
     transition: .2s ease-in-out;
     opacity: .7;
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+  }
 }

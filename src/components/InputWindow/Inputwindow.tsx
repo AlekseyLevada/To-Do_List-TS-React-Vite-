@@ -5,8 +5,9 @@ import IinputWindow from "./types/IInputWiindow"
 export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
 
   const [inputValue, setinputValue] = useState("")
+
   const addTask = useCallback(() => {
-    onAdd(inputValue)
+    onAdd(inputValue.trim())
     setinputValue("")
   }, [inputValue])
 
@@ -14,11 +15,12 @@ export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
     <>
       <div className={styles.inputWindowWrapper}>
         <input className={styles.inputWindow}
-          type="text" placeholder="Введите название задачи"
+          type="text"
+          placeholder="Введите название задачи"
           value={inputValue}
-          onChange={(e) => {setinputValue(e.target.value)}}
-          onKeyDown={(e) => e.key === "Enter"}/>
-        <button className={styles.inputWindowBtn} area-label="Добавить задачу" onClick={() => addTask()}>+</button>
+          onChange={(e) => { setinputValue(e.target.value) }}
+          onKeyDown={(e) => e.key === "Enter" && inputValue !== "" ? addTask() : null} />
+        <button className={styles.inputWindowBtn} area-label="Добавить задачу" onClick={() => inputValue !== "" ? addTask() : null} disabled={inputValue === ""}>+</button>
       </div>
     </>
   )

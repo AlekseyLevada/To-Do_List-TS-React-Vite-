@@ -20,9 +20,19 @@
   background: inherit;
 }
 
+.appTemplateList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none !important;
+}
+
+.appTemplateMessageLost {
+  color: tomato;
+  font-weight: 700;
+}
+
 .appTemplateMessageLost,
 .appTemplateMessageLength {
   text-align: center;
-  font-weight: 400;
-  font-size: 18px;
 }
