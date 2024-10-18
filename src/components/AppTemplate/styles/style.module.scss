@@ -1,6 +1,5 @@
 .appTemplate {
   min-width: 600px;
-  height: 450px;
   box-shadow: 0px 3px 8px 0px #00000040;
   border-radius: 20px;
   background: #F9F7F7;
@@ -25,6 +24,19 @@
   flex-direction: column;
   gap: 10px;
   list-style: none !important;
+  overflow-y: scroll;
+  height: 250px;
+  padding-right: 6px;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #dbe2ef;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #3F72AF;
+    border-radius: 4px;
+  }
 }
 
 .appTemplateMessageLost {

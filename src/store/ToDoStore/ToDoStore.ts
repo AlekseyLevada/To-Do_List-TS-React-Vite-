@@ -27,9 +27,7 @@ export const ToDoStore = create<IToDoStore>((set, get) => ({
   removeTask: (id: string) => {
     const { tasks } = get()
     set({
-      tasks: tasks.filter((task) => {
-        task.id !== id
-      })
+      tasks: tasks.filter((task) => task.id !== id)
     })
   }
 

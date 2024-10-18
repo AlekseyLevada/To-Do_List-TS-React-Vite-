@@ -2,12 +2,19 @@ import { create } from "zustand";
 import IWarningStore from "./types/IWarningStore";
 
 export const WarningMessageStore = create<IWarningStore>((set, get) => ({
-  warningMessage: false,
+  booleanFlag: false,
 
-  changeWarningMessageFlag: () => {
-    let { warningMessage } = get()
+  changeBooleanFlagToTrue: () => {
+    let { booleanFlag } = get()
     set({
-      warningMessage: warningMessage = !warningMessage
+      booleanFlag: booleanFlag = !booleanFlag
+    })
+  },
+
+  changeBooleanFlagToFalse: () => {
+    let { booleanFlag } = get()
+    set({
+      booleanFlag: booleanFlag = !booleanFlag
     })
   }
 }))

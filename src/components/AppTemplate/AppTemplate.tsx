@@ -2,6 +2,7 @@ import styles from './styles/style.module.scss'
 import { AppTitle } from '../AppTitile/AppTitle'
 import { ToDoStore } from '../../store/ToDoStore/ToDoStore'
 import { InputWindow } from '../InputWindow/Inputwindow'
+import { TaskItem } from '../TaskItem/TaskItem'
 
 export const AppTemplate: React.FC = (): JSX.Element => {
 
@@ -15,12 +16,12 @@ export const AppTemplate: React.FC = (): JSX.Element => {
       <article className={styles.appTemplate}>
         <div className={styles.appTemplateTop}>
           <AppTitle />
-          <InputWindow onAdd={(title: string) => title && title !== "" ? createTask(title) : null}/>
+          <InputWindow onAdd={(title: string) => title && title !== "" ? createTask(title) : null} />
           <ul className={styles.appTemplateList}>
             {
               tasks.map(task => {
                 return (
-                  <li key={task.id}>{task.title}</li>
+                  <TaskItem key={task.id} id={task.id} title={task.title} onDell={() => removeTask(task.id)} onEdit={() => updateTask(task.id, task.title)}/>
                 )
               })
             }
@@ -38,5 +39,3 @@ export const AppTemplate: React.FC = (): JSX.Element => {
     </>
   )
 }
-
-//alert("Для добавления задачи поле ввода не может быть пустым")

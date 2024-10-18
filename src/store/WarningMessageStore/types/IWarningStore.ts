@@ -1,6 +1,7 @@
 interface IWarningStore {
-  warningMessage : boolean,
-  changeWarningMessageFlag: () => void
+  booleanFlag: boolean
+  changeBooleanFlagToTrue: () => void
+  changeBooleanFlagToFalse: () => void
 }
 
 export default IWarningStore
