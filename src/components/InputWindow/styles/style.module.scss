@@ -1,7 +1,7 @@
 .inputWindowWrapper {
   display: grid;
   grid-template-columns: 1fr 45px;
-  max-width: 250px;
+  max-width: 260px;
   margin: 0 auto 30px auto;
   position: relative;
   &::before {
@@ -24,9 +24,9 @@
   border-radius: 5px 0 0 5px;
   padding: 9px 11px;
   overflow: hidden;
-  font: 400 14px/14px "Poppins", sans-serif;
+  font: 400 14px/1.4 "Poppins", sans-serif;
   &::placeholder {
-    font: 400 12px/13px "Poppins", sans-serif;
+    font: 400 14px/1.4 "Poppins", sans-serif;
   }
   &:focus {
     outline: none;

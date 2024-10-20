@@ -1,24 +1,28 @@
-.taskItemWrapper {
-  cursor: pointer;
-}
-
 .taskItem {
-  height: 55px;
+  min-height: 55px;
   width: 100%;
-  flex-shrink: 0;
   background: #dbe2ef;
   border-radius: 5px;
   padding: 10px 15px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  border: 2px solid transparent;
   gap: 10px;
 }
 
-.taskItemCheckboxWrapper {
+.taskItemInputLabel {
   position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  height: 30px;
 }
 
 .taskItemCheckbox {
+  flex-shrink: 0;
   cursor: pointer;
   appearance: none;
   background: #fff;
@@ -61,16 +65,26 @@
   }
 }
 
-.taskItemTitle {
+.taskItemEditInput {
   flex: 1;
-  font: 400 14px/1.2 "Poppins", sans-serif !important;
+  border: none;
+  border-bottom: 1px solid #3F72AF;
+  background: transparent;
+  font: 400 14px/1.4 "Poppins", sans-serif !important;
+  height: 30px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.taskItemTitle {
+  font: 400 14px/1.4 "Poppins", sans-serif !important;
 }
 
 .taskItemControl {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: fit-content;
   gap: 10px;
   height: 100%;
 }

@@ -7,8 +7,10 @@ export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
   const [inputValue, setinputValue] = useState("")
 
   const addTask = useCallback(() => {
-    onAdd(inputValue.trim())
-    setinputValue("")
+    setTimeout(() => {
+      onAdd(inputValue.trim())
+      setinputValue("")
+    }, 300)
   }, [inputValue])
 
   return (
