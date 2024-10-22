@@ -1,28 +1,35 @@
-import { useCallback, useState } from "react";
 import styles from "./styles/style.module.scss"
+import { useCallback, useState } from "react";
 import IinputWindow from "./types/IInputWiindow"
 
 export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
 
-  const [inputValue, setinputValue] = useState("")
+  const [inputValue, setInputValue] = useState("")
 
   const addTask = useCallback(() => {
     setTimeout(() => {
       onAdd(inputValue.trim())
-      setinputValue("")
+      setInputValue("")
     }, 300)
   }, [inputValue])
 
   return (
     <>
       <div className={styles.inputWindowWrapper}>
-        <input className={styles.inputWindow}
+        <input
+          className={styles.inputWindow}
+          name="inputWindow"
           type="text"
           placeholder="Введите название задачи"
           value={inputValue}
-          onChange={(e) => { setinputValue(e.target.value) }}
+          onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && inputValue !== "" ? addTask() : null} />
-        <button className={styles.inputWindowBtn} area-label="Добавить задачу" onClick={() => inputValue !== "" ? addTask() : null} disabled={inputValue === ""}>+</button>
+        <button
+          className={styles.inputWindowBtn}
+          area-label="Добавить задачу"
+          onClick={() => inputValue !== "" ? addTask() : null}
+          disabled={inputValue === ""}>+
+        </button>
       </div>
     </>
   )
