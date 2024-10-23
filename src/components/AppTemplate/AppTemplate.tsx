@@ -1,15 +1,15 @@
 import styles from './styles/style.module.scss'
 import { AppTitle } from '../AppTitile/AppTitle'
-import { ToDoStore } from '../../store/ToDoStore/ToDoStore'
+import { useToDoStore } from '../../store/ToDoStore/ToDoStore'
 import { InputWindow } from '../InputWindow/Inputwindow'
 import { TaskItem } from '../TaskItem/TaskItem'
 
 export const AppTemplate: React.FC = (): JSX.Element => {
 
-  const tasks = ToDoStore(state => state.tasks)
-  const createTask = ToDoStore(state => state.createTask)
-  const updateTask = ToDoStore(state => state.updateTask)
-  const removeTask = ToDoStore(state => state.removeTask)
+  const tasks = useToDoStore(state => state.tasks)
+  const createTask = useToDoStore(state => state.createTask)
+  const updateTask = useToDoStore(state => state.updateTask)
+  const removeTask = useToDoStore(state => state.removeTask)
 
   return (
     <>
