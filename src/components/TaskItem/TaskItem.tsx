@@ -1,8 +1,12 @@
 import { useState } from "react"
 import styles from "./styles/style.module.scss"
 import ItaskItemProps from "./types/ITaskItemProsp"
+import { useToDoStore } from "../../store/ToDoStore/ToDoStore"
 
-export const TaskItem: React.FC<ItaskItemProps> = ({ id, title, onEdit, onDell }): JSX.Element => {
+export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element => {
+
+  const updateTask = useToDoStore(state => state.updateTask)
+  const removeTask = useToDoStore(state => state.removeTask)
 
   const [checked, setChecked] = useState(false)
   const [editMode, setEditMode] = useState(false)
@@ -37,7 +41,7 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title, onEdit, onDell }
             editMode ?
               <button
                 className={styles.taskItemControlItem}
-                onClick={() => setTimeout(() => { onEdit(id, value); setEditMode(false) }, 300)}
+                onClick={() => setTimeout(() => { updateTask(id, value); setEditMode(false) }, 300)}
                 area-label="Save">
               </button>
               :
@@ -50,7 +54,7 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title, onEdit, onDell }
           }
           <button
             className={styles.taskItemControlItem}
-            onClick={() => setTimeout(() => { onDell(id) }, 300)}
+            onClick={() => setTimeout(() => { removeTask(id) }, 300)}
             area-label="Delete"
             disabled={!checked}>
           </button>
