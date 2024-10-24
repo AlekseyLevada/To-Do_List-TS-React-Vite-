@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import styles from "./styles/style.module.scss"
 import ItaskItemProps from "./types/ITaskItemProsp"
 import { useToDoStore } from "../../store/ToDoStore/ToDoStore"
@@ -11,6 +11,13 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
   const [checked, setChecked] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState(title)
+
+  const editcurrentTask = useCallback(() => {
+    setTimeout(() => {
+      updateTask(id, value.trim())
+      setEditMode(false)
+    }, 300)
+  }, [value])
 
 
   return (
@@ -30,10 +37,13 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
                 name="editInput"
                 className={styles.taskItemEditInput}
                 value={value}
-                onChange={(e) => setValue(e.target.value)} />
+                onChange={(e) => setValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && value !== "" ? editcurrentTask() : null}
+              />
+
               :
               <div
-                className={checked ? `${styles.taskItemTitle} ${styles.isChecked}` : `${styles.taskItemTitle}`}>{title}</div>
+                className={checked ? `${styles.taskItemTitle} ${styles.isChecked}` : `${styles.taskItemTitle}`} title={title} area-label={title} >{title}</div>
           }
         </label>
         <div className={styles.taskItemControl}>
@@ -41,14 +51,17 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
             editMode ?
               <button
                 className={styles.taskItemControlItem}
-                onClick={() => setTimeout(() => { updateTask(id, value); setEditMode(false) }, 300)}
-                area-label="Save">
+                onClick={() => value !== "" ? editcurrentTask() : alert("Поле новой или редактируемой задачи, не может быть пустым")}
+                area-label="Save"
+                title="Сохранить"
+              >
               </button>
               :
               <button
                 className={styles.taskItemControlItem}
                 onClick={() => setTimeout(() => { setEditMode(true) }, 300)}
                 area-label="Edit"
+                title="Редактировать"
                 disabled={checked}>
               </button>
           }
@@ -56,6 +69,7 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
             className={styles.taskItemControlItem}
             onClick={() => setTimeout(() => { removeTask(id) }, 300)}
             area-label="Delete"
+            title="Удалить"
             disabled={!checked}>
           </button>
         </div>

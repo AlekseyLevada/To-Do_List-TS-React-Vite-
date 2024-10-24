@@ -83,6 +83,9 @@
 
   &.isChecked {
     text-decoration: line-through;
+    &[area-label="Edit"] {
+      opacity: .8;
+    }
   }
 }
 
@@ -130,5 +133,6 @@
 
   &:disabled {
     cursor: not-allowed;
+    opacity: .8;
   }
 }

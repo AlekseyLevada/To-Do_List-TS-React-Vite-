@@ -20,6 +20,7 @@ export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
           className={styles.inputWindow}
           name="inputWindow"
           type="text"
+          title="Введите название задачи"
           placeholder="Введите название задачи"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -27,6 +28,7 @@ export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
         <button
           className={styles.inputWindowBtn}
           area-label="Добавить задачу"
+          title="Добавить задачу"
           onClick={() => inputValue !== "" ? addTask() : null}
           disabled={inputValue === ""}>+
         </button>
