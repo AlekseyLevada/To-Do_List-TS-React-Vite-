@@ -10,6 +10,8 @@ export const AppTemplate: React.FC = (): JSX.Element => {
   const tasks = useToDoStore(state => state.tasks)
   const createTask = useToDoStore(state => state.createTask)
 
+  console.log(tasks)
+
   return (
     <>
       <article className={styles.appTemplate}>

@@ -7,7 +7,9 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
 
   const updateTask = useToDoStore(state => state.updateTask)
   const removeTask = useToDoStore(state => state.removeTask)
+  const toggleCheckedStatus = useToDoStore(state => state.toggleCheckedStatus)
 
+  
   const [checked, setChecked] = useState(false)
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState(title)
@@ -28,7 +30,7 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
             type="checkbox"
             name="checkbox"
             className={styles.taskItemCheckbox}
-            onChange={(e) => setChecked(e.target.checked)}
+            onChange={(e) => {setChecked(e.target.checked); toggleCheckedStatus(id, checked)}}
             disabled={editMode} />
           {
             editMode ?
