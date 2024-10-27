@@ -11,9 +11,6 @@ export const AppTemplate: React.FC = (): JSX.Element => {
   const tasks = useToDoStore(state => state.tasks)
   const filteredTasks = useToDoStore(state => state.filteredTasks)
 
-  console.log(tasks);
-  
-
   return (
     <>
       <article className={styles.appTemplate}>

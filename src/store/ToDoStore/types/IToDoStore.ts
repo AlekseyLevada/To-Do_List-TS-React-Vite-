@@ -3,7 +3,7 @@ import ITask from "./ITask";
 interface IToDoStore {
   tasks: ITask[];
   filteredTasks: ITask[];
-  filter: "all" | "active" | "complited";
+  filter: string;
   createTask: (title: string) => void;
   updateTask: (id: string, title: string) => void;
   removeTask: (id: string) => void;
