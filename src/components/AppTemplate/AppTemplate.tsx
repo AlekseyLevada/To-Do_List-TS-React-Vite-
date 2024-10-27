@@ -3,14 +3,16 @@ import { AppTitle } from '../AppTitile/AppTitle'
 import { useToDoStore } from '../../store/ToDoStore/ToDoStore'
 import { InputWindow } from '../InputWindow/Inputwindow'
 import { TaskItem } from '../TaskItem/TaskItem'
-
+import { Filters } from '../Filters/Filters'
 
 export const AppTemplate: React.FC = (): JSX.Element => {
 
-  const tasks = useToDoStore(state => state.tasks)
   const createTask = useToDoStore(state => state.createTask)
+  const tasks = useToDoStore(state => state.tasks)
+  const filteredTasks = useToDoStore(state => state.filteredTasks)
 
-  console.log(tasks)
+  console.log(tasks);
+  
 
   return (
     <>
@@ -20,20 +22,21 @@ export const AppTemplate: React.FC = (): JSX.Element => {
           <InputWindow onAdd={(title: string) => title && title !== "" ? createTask(title) : null} />
           <ul className={styles.appTemplateList}>
             {
-              tasks.map(task => {
+              filteredTasks.map((task) => {
                 return (
-                  <TaskItem key={task.id} id={task.id} title={task.title} />
+                  <TaskItem key={task.id} id={task.id} title={task.title} isChecked={task.checked} />
                 )
               })
             }
           </ul>
         </div>
+        <Filters />
         <div className={styles.appTemplateMessages}>
           {
             tasks.length === 0 && <p className={styles.appTemplateMessageLost}>У Вас нет активных задач! Пора что-то запланировать.</p>
           }
           {
-            tasks.length > 0 && <p className={styles.appTemplateMessageLength}>Текущих задач: {tasks.length}</p>
+            tasks.length > 0 && <p className={styles.appTemplateMessageLength}>Всего задач: {tasks.length}</p>
           }
         </div>
       </article>

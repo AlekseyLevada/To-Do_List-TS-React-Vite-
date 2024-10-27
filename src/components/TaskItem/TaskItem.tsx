@@ -3,14 +3,13 @@ import styles from "./styles/style.module.scss"
 import ItaskItemProps from "./types/ITaskItemProsp"
 import { useToDoStore } from "../../store/ToDoStore/ToDoStore"
 
-export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element => {
+export const TaskItem: React.FC<ItaskItemProps> = ({ id, title, isChecked }): JSX.Element => {
 
   const updateTask = useToDoStore(state => state.updateTask)
   const removeTask = useToDoStore(state => state.removeTask)
   const toggleCheckedStatus = useToDoStore(state => state.toggleCheckedStatus)
 
-  
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(isChecked)
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState(title)
 
@@ -21,16 +20,16 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title }): JSX.Element =
     }, 300)
   }, [value])
 
-
   return (
     <>
-      <div id={id} className={styles.taskItem}>
+      <div className={styles.taskItem}>
         <label className={styles.taskItemInputLabel}>
           <input
+            checked={checked}
             type="checkbox"
             name="checkbox"
             className={styles.taskItemCheckbox}
-            onChange={(e) => {setChecked(e.target.checked); toggleCheckedStatus(id, checked)}}
+            onChange={(e) => { setChecked(e.target.checked); toggleCheckedStatus(id, checked) }}
             disabled={editMode} />
           {
             editMode ?

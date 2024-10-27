@@ -8,7 +8,7 @@ export const useToDoStore = create<IToDoStore>((set, get) => ({
       id: "cc7b5d46-c21e-42c0-be7d-2f533f3c7e7f",
       title: "Первая задача",
       timeAt: 5647892156741236,
-      checked: false,
+      checked: true,
     },
     {
       id: "e0a2cd29-1278-40b3-a55e-ec5cebf077c4",
@@ -24,16 +24,19 @@ export const useToDoStore = create<IToDoStore>((set, get) => ({
     }
   ],
 
+  filter: "all",
+
+  filteredTasks: [],
+
   createTask: (title: string) => {
-    const { tasks } = get()
     const newTask = { id: uuidv4(), title: title, timeAt: Date.now(), checked: false }
     set({
-      tasks: [...tasks, newTask]
+      tasks: [...get().tasks, newTask]
     })
   },
 
   updateTask: (id: string, title: string) => set({
-    tasks: get().tasks.map((task) => task.id === id ? { ...task, title: title } : { id: task.id, title: task.title, timeAt: task.timeAt, checked: task.checked })
+    tasks: get().tasks.map((task) => task.id === id ? { ...task, title: title } : task)
   }),
 
 
@@ -46,8 +49,29 @@ export const useToDoStore = create<IToDoStore>((set, get) => ({
 
   toggleCheckedStatus: (id, status) => {
     set({
-      tasks: get().tasks.map(task => task.id === id? { ...task, checked:!status} : { id: task.id, title: task.title, timeAt: task.timeAt, checked: task.checked})
+      tasks: get().tasks.map((task) => task.id === id ? { ...task, checked: !status } : task)
     })
+  },
+
+  setFilterStatus: (value: string) => {
+    if (value === "all") {
+      set({
+        filter: value,
+        filteredTasks: get().tasks.filter(task => task),
+      })
+    }
+    if (value === "active") {
+      set({
+        filter: value,
+        filteredTasks: get().tasks.filter(task => task.checked === false)
+      })
+    }
+    if (value === "complited") {
+      set({
+        filter: value,
+        filteredTasks: get().tasks.filter(task => task.checked === true)
+      })
+    }
   },
 
 }))
