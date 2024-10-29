@@ -19,11 +19,19 @@
   outline: none;
   font-weight: 600;
   transition: .1s ease-in-out;
+
   &:hover {
     box-shadow: 0 3px 10px #3F72AF;
     transition: .1s ease-in-out;
   }
+
   &:disabled {
     opacity: .8;
+  }
+}
+
+@media screen and (max-width:420px) {
+  .filterBtns {
+    grid-template-columns: 1fr;
   }
 }

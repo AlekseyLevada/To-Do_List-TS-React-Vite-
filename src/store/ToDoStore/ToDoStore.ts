@@ -5,9 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const useToDoStore = create<IToDoStore>((set, get) => ({
   tasks: taskData,
-
   filter: "all",
-
   filteredTasks: [],
 
   createTask: (title: string) => {

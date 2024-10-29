@@ -56,3 +56,14 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width:650px) {
+  .inputWindowWrapper {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    &::before {
+      display: none;
+    }
+  }
+}

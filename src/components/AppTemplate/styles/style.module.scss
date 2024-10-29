@@ -50,3 +50,12 @@
 .appTemplateMessageLength {
   text-align: center;
 }
+
+@media screen and (max-width: 650px) {
+  .appTemplate {
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+}
