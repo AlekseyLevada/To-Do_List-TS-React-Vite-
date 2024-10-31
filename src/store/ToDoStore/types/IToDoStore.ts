@@ -2,13 +2,12 @@ import ITask from "./ITask";
 
 interface IToDoStore {
   tasks: ITask[];
-  filteredTasks: ITask[];
-  filter: string;
+  tasksFilter: "all" | "active" | "complited";
   createTask: (title: string) => void;
   updateTask: (id: string, title: string) => void;
   removeTask: (id: string) => void;
   toggleCheckedStatus: (id: string, status: boolean) => void;
-  setFilterStatus: (value: string) => void;
+  setFilterStatus: (value: "all" | "active" | "complited") => void;
 }
 
 export default IToDoStore

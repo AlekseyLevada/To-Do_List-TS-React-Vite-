@@ -9,13 +9,28 @@ export const AppTemplate: React.FC = (): JSX.Element => {
 
   const createTask = useToDoStore(state => state.createTask)
   const tasks = useToDoStore(state => state.tasks)
-  const filteredTasks = useToDoStore(state => state.filteredTasks)
+  const tasksFilter = useToDoStore(state => state.tasksFilter)
+  let filteredTasks = tasks
+
+  switch (tasksFilter) {
+    case "all":
+      filteredTasks = tasks.filter(task => task)
+      break
+
+    case "active":
+      filteredTasks = tasks.filter(task => task.checked === false)
+      break
+
+    case "complited":
+      filteredTasks = tasks.filter(task => task.checked === true)
+      break
+  }
 
   return (
     <>
       <article className={styles.appTemplate}>
         <div className={styles.appTemplateTop}>
-          <AppTitle />
+          <AppTitle AppTitle="Список задач" />
           <InputWindow onAdd={(title: string) => title && title !== "" ? createTask(title) : null} />
           <ul className={styles.appTemplateList}>
             {

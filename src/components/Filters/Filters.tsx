@@ -1,15 +1,10 @@
 import styles from "./styles/style.module.scss"
 import { useToDoStore } from "../../store/ToDoStore/ToDoStore"
-import { useEffect } from "react"
 
 export const Filters: React.FC = (): JSX.Element => {
 
   const setFilterStatus = useToDoStore(state => state.setFilterStatus)
-  const filter = useToDoStore(state => state.filter)
-
-  useEffect(() => {
-    setFilterStatus("all")
-  }, [])
+  const filter = useToDoStore(state => state.tasksFilter)
 
   return (
     <>

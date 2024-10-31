@@ -5,27 +5,23 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const useToDoStore = create<IToDoStore>((set, get) => ({
   tasks: taskData,
-  filter: "all",
-  filteredTasks: [],
+  tasksFilter: "all",
 
   createTask: (title: string) => {
     const newTask = { id: uuidv4(), title: title, timeAt: Date.now(), checked: false }
     set({
-      tasks: [...get().tasks, newTask],
-      filteredTasks: [...get().filteredTasks, newTask]
+      tasks: [newTask, ...get().tasks]
     })
   },
 
   updateTask: (id: string, title: string) => set({
-    tasks: get().tasks.map((task) => task.id === id ? { ...task, title: title } : task),
-    filteredTasks: get().filteredTasks.map((task) => task.id === id ? { ...task, title: title } : task)
+    tasks: get().tasks.map((task) => task.id === id ? { ...task, title: title } : task)
   }),
 
 
   removeTask: (id: string) => {
     set({
-      tasks: get().tasks.filter((task) => task.id !== id),
-      filteredTasks: get().filteredTasks.filter(task => task.id !== id)
+      tasks: get().tasks.filter((task) => task.id !== id)
     })
   },
 
@@ -35,25 +31,10 @@ export const useToDoStore = create<IToDoStore>((set, get) => ({
     })
   },
 
-  setFilterStatus: (value: string) => {
-    if (value === "all") {
-      set({
-        filter: value,
-        filteredTasks: get().tasks.filter(task => task),
-      })
-    }
-    if (value === "active") {
-      set({
-        filter: value,
-        filteredTasks: get().tasks.filter(task => task.checked === false),
-      })
-    }
-    if (value === "complited") {
-      set({
-        filter: value,
-        filteredTasks: get().tasks.filter(task => task.checked === true),
-      })
-    }
+  setFilterStatus: (value: "all" | "active" | "complited") => {
+    set({
+      tasksFilter: value
+    })
   },
 
 }))
