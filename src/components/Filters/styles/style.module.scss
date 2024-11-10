@@ -30,8 +30,11 @@
   }
 }
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:425px) {
   .filterBtns {
     grid-template-columns: 1fr;
+  }
+  .filterBtn {
+    font-size: 12px;
   }
 }

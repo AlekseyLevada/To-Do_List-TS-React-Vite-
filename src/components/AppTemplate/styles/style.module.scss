@@ -29,12 +29,15 @@
   overflow-y: scroll;
   height: 250px;
   padding-right: 6px;
+
   &::-webkit-scrollbar {
     width: 6px;
   }
+
   &::-webkit-scrollbar-track {
     background: #dbe2ef;
   }
+
   &::-webkit-scrollbar-thumb {
     background: #3F72AF;
     border-radius: 4px;
@@ -57,5 +60,16 @@
     width: 100%;
     max-width: 100%;
     min-width: unset;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .appTemplate {
+    padding: 10px;
+  }
+
+  .appTemplateMessageLost,
+  .appTemplateMessageLength {
+    font-size: 12px;
   }
 }

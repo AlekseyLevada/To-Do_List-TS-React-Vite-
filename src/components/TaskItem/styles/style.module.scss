@@ -1,11 +1,9 @@
 .taskItem {
-  min-height: 55px;
-  width: 100%;
   background: #dbe2ef;
   border-radius: 5px;
   padding: 10px 15px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 70px;
   justify-content: space-between;
   border: 2px solid transparent;
   gap: 10px;
@@ -14,21 +12,20 @@
 .taskItemInputLabel {
   position: relative;
   cursor: pointer;
-  display: flex;
+  display: grid;
+  grid-template-columns: 21px 1fr;
   align-items: center;
   gap: 10px;
-  height: 30px;
-  flex: 1;
+  height: 100%;
 }
 
 .taskItemCheckbox {
-  flex-shrink: 0;
   cursor: pointer;
   appearance: none;
   background: #fff;
   border: 2px solid #3F72AF;
-  height: 1.5em;
-  width: 1.5em;
+  height: 21px;
+  width: 21px;
   border-radius: 4px;
   vertical-align: text-bottom;
   position: relative;
@@ -83,6 +80,7 @@
 
   &.isChecked {
     text-decoration: line-through;
+
     &[area-label="Edit"] {
       opacity: .8;
     }
@@ -134,5 +132,32 @@
   &:disabled {
     cursor: not-allowed;
     opacity: .8;
+  }
+}
+
+@media screen and (max-width:425px) {
+
+  .taskItem {
+    grid-template-columns: 1fr 45px;
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .taskItemTitle, .taskItemEditInput {
+    font: 400 12px/1.4 "Poppins", sans-serif !important;
+  }
+
+  .taskItemEditInput {
+    height: auto;
+  }
+
+  .taskItemControl,
+  .taskItemInputLabel {
+    gap: 5px;
+  }
+
+  .taskItemControlItem {
+    width: 20px;
+    height: 20px;
   }
 }

@@ -38,6 +38,7 @@ export const TaskItem: React.FC<ItaskItemProps> = ({ id, title, isChecked }): JS
                 name="editInput"
                 className={styles.taskItemEditInput}
                 value={value}
+                maxLength={100}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && value !== "" ? editcurrentTask() : null}
               />

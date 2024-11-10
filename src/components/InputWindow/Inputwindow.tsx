@@ -23,6 +23,7 @@ export const InputWindow: React.FC<IinputWindow> = ({ onAdd }): JSX.Element => {
           title="Введите название задачи"
           placeholder="Введите название задачи"
           value={inputValue}
+          maxLength={100}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && inputValue !== "" ? addTask() : null} />
         <button
