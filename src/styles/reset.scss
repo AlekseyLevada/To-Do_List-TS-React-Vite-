@@ -105,6 +105,11 @@ section {
 
 body {
   line-height: 1;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: #3E70AC;
+  padding: 1rem;
 }
 
 ol,

@@ -49,9 +49,11 @@
   font-weight: 700;
 }
 
+.appTemplateMessages,
 .appTemplateMessageLost,
 .appTemplateMessageLength {
   text-align: center;
+  font: 400 14px/1.4 "Poppins", sans-serif;
 }
 
 @media screen and (max-width: 650px) {
